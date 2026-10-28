@@ -1,0 +1,315 @@
+{
+  "schemaVersion": "phase17-test-fixtures-v1",
+  "warning": "SYNTHETIC TEST DATA ONLY. Do not load into production. Map these logical fixtures to the actual Prisma schema before importing.",
+  "currency": "INR",
+  "plans": [
+    {
+      "id": "test-plan-starter",
+      "key": "STARTER_TEST",
+      "name": "Starter (Test)",
+      "description": "Synthetic plan for subscription and entitlement tests.",
+      "interval": "MONTHLY",
+      "priceMinor": 49900,
+      "currency": "INR",
+      "trialDays": 14,
+      "status": "ACTIVE",
+      "entitlements": {
+        "maxStaffAccounts": 2,
+        "maxMenuItems": 100,
+        "maxLocations": 1,
+        "analytics": false,
+        "inventory": false
+      },
+      "isTestFixture": true
+    },
+    {
+      "id": "test-plan-growth",
+      "key": "GROWTH_TEST",
+      "name": "Growth (Test)",
+      "description": "Synthetic plan for feature entitlement tests.",
+      "interval": "MONTHLY",
+      "priceMinor": 99900,
+      "currency": "INR",
+      "trialDays": 14,
+      "status": "ACTIVE",
+      "entitlements": {
+        "maxStaffAccounts": 10,
+        "maxMenuItems": 500,
+        "maxLocations": 1,
+        "analytics": true,
+        "inventory": true
+      },
+      "isTestFixture": true
+    },
+    {
+      "id": "test-plan-pro",
+      "key": "PRO_TEST",
+      "name": "Pro (Test)",
+      "description": "Synthetic high-limit plan for test coverage; not a commercial price recommendation.",
+      "interval": "MONTHLY",
+      "priceMinor": 199900,
+      "currency": "INR",
+      "trialDays": 14,
+      "status": "ACTIVE",
+      "entitlements": {
+        "maxStaffAccounts": 50,
+        "maxMenuItems": 5000,
+        "maxLocations": 5,
+        "analytics": true,
+        "inventory": true
+      },
+      "isTestFixture": true
+    },
+    {
+      "id": "test-plan-archived",
+      "key": "ARCHIVED_TEST",
+      "name": "Archived Plan (Test)",
+      "description": "Used to test active subscriptions referencing archived plans.",
+      "interval": "MONTHLY",
+      "priceMinor": 1,
+      "currency": "INR",
+      "trialDays": 0,
+      "status": "ARCHIVED",
+      "entitlements": {
+        "maxStaffAccounts": 1,
+        "maxMenuItems": 1,
+        "maxLocations": 1,
+        "analytics": false,
+        "inventory": false
+      },
+      "isTestFixture": true
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "test-restaurant-a",
+      "name": "Test Restaurant A",
+      "slug": "test-restaurant-a",
+      "ownerEmail": "owner-a@restaurant-a.example.test",
+      "status": "ACTIVE",
+      "isTestFixture": true
+    },
+    {
+      "id": "test-restaurant-b",
+      "name": "Test Cafe B",
+      "slug": "test-cafe-b",
+      "ownerEmail": "owner-b@restaurant-b.example.test",
+      "status": "ACTIVE",
+      "isTestFixture": true
+    },
+    {
+      "id": "test-restaurant-c",
+      "name": "Test Kitchen C",
+      "slug": "test-kitchen-c",
+      "ownerEmail": "owner-c@restaurant-c.example.test",
+      "status": "ACTIVE",
+      "isTestFixture": true
+    },
+    {
+      "id": "test-restaurant-no-subscription",
+      "name": "Test No Subscription",
+      "slug": "test-no-subscription",
+      "ownerEmail": "owner-no-subscription@example.test",
+      "status": "ACTIVE",
+      "isTestFixture": true
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "test-sub-trial-a",
+      "restaurantId": "test-restaurant-a",
+      "planId": "test-plan-starter",
+      "status": "TRIALING",
+      "trialStartOffsetDays": -3,
+      "trialEndOffsetDays": 11,
+      "currentPeriodStartOffsetDays": -3,
+      "currentPeriodEndOffsetDays": 11,
+      "cancelAtPeriodEnd": false,
+      "provider": "TEST",
+      "providerSubscriptionId": "test-provider-sub-trial-a",
+      "isTestFixture": true
+    },
+    {
+      "id": "test-sub-active-b",
+      "restaurantId": "test-restaurant-b",
+      "planId": "test-plan-growth",
+      "status": "ACTIVE",
+      "trialStartOffsetDays": -30,
+      "trialEndOffsetDays": -16,
+      "currentPeriodStartOffsetDays": -4,
+      "currentPeriodEndOffsetDays": 26,
+      "cancelAtPeriodEnd": false,
+      "provider": "TEST",
+      "providerSubscriptionId": "test-provider-sub-active-b",
+      "isTestFixture": true
+    },
+    {
+      "id": "test-sub-past-due-c",
+      "restaurantId": "test-restaurant-c",
+      "planId": "test-plan-pro",
+      "status": "PAST_DUE",
+      "trialStartOffsetDays": -60,
+      "trialEndOffsetDays": -46,
+      "currentPeriodStartOffsetDays": -35,
+      "currentPeriodEndOffsetDays": -5,
+      "cancelAtPeriodEnd": false,
+      "provider": "TEST",
+      "providerSubscriptionId": "test-provider-sub-past-due-c",
+      "isTestFixture": true
+    },
+    {
+      "id": "test-sub-cancel-at-period-end",
+      "restaurantId": "test-restaurant-b",
+      "planId": "test-plan-starter",
+      "status": "ACTIVE",
+      "trialStartOffsetDays": -90,
+      "trialEndOffsetDays": -76,
+      "currentPeriodStartOffsetDays": -2,
+      "currentPeriodEndOffsetDays": 28,
+      "cancelAtPeriodEnd": true,
+      "cancelAtPeriodEndRequestedOffsetDays": -1,
+      "provider": "TEST",
+      "providerSubscriptionId": "test-provider-sub-cancel-end",
+      "isTestFixture": true,
+      "note": "Alternative lifecycle fixture; do not load alongside another current subscription for the same restaurant if the schema allows only one current subscription."
+    },
+    {
+      "id": "test-sub-expired-trial",
+      "restaurantId": "test-restaurant-no-subscription",
+      "planId": "test-plan-starter",
+      "status": "EXPIRED",
+      "trialStartOffsetDays": -30,
+      "trialEndOffsetDays": -16,
+      "currentPeriodStartOffsetDays": -30,
+      "currentPeriodEndOffsetDays": -16,
+      "cancelAtPeriodEnd": false,
+      "provider": "TEST",
+      "providerSubscriptionId": "test-provider-sub-expired",
+      "isTestFixture": true,
+      "note": "Alternative scenario for expiry; do not use simultaneously with the no-subscription state."
+    }
+  ],
+  "invoices": [
+    {
+      "id": "test-invoice-paid-001",
+      "restaurantId": "test-restaurant-b",
+      "subscriptionId": "test-sub-active-b",
+      "invoiceNumber": "TEST-INV-0001",
+      "amountMinor": 99900,
+      "currency": "INR",
+      "status": "PAID",
+      "paymentStatus": "SUCCEEDED",
+      "provider": "TEST",
+      "providerInvoiceId": "test-provider-invoice-001",
+      "issuedOffsetDays": -4,
+      "paidOffsetDays": -4,
+      "isTestFixture": true,
+      "note": "Synthetic paid-state fixture only; not evidence of a real charge."
+    },
+    {
+      "id": "test-invoice-pending-002",
+      "restaurantId": "test-restaurant-c",
+      "subscriptionId": "test-sub-past-due-c",
+      "invoiceNumber": "TEST-INV-0002",
+      "amountMinor": 199900,
+      "currency": "INR",
+      "status": "OPEN",
+      "paymentStatus": "PENDING",
+      "provider": "TEST",
+      "providerInvoiceId": "test-provider-invoice-002",
+      "issuedOffsetDays": -5,
+      "paidOffsetDays": null,
+      "isTestFixture": true
+    },
+    {
+      "id": "test-invoice-failed-003",
+      "restaurantId": "test-restaurant-c",
+      "subscriptionId": "test-sub-past-due-c",
+      "invoiceNumber": "TEST-INV-0003",
+      "amountMinor": 199900,
+      "currency": "INR",
+      "status": "OPEN",
+      "paymentStatus": "FAILED",
+      "provider": "TEST",
+      "providerInvoiceId": "test-provider-invoice-003",
+      "issuedOffsetDays": -3,
+      "paidOffsetDays": null,
+      "isTestFixture": true
+    }
+  ],
+  "webhookEvents": [
+    {
+      "eventId": "test-event-payment-succeeded-001",
+      "type": "invoice.payment_succeeded",
+      "provider": "TEST",
+      "processingState": "PROCESSED",
+      "deliveryCount": 1,
+      "isTestFixture": true
+    },
+    {
+      "eventId": "test-event-payment-failed-002",
+      "type": "invoice.payment_failed",
+      "provider": "TEST",
+      "processingState": "PROCESSED",
+      "deliveryCount": 1,
+      "isTestFixture": true
+    },
+    {
+      "eventId": "test-event-duplicate-003",
+      "type": "invoice.payment_succeeded",
+      "provider": "TEST",
+      "processingState": "PROCESSED",
+      "deliveryCount": 2,
+      "isTestFixture": true,
+      "note": "Send the same event ID twice through the test harness; handler should apply it only once."
+    }
+  ],
+  "testScenarios": [
+    {
+      "name": "trial-active",
+      "restaurantId": "test-restaurant-a",
+      "expected": "Trial remains active until server-calculated trial end."
+    },
+    {
+      "name": "active-subscription",
+      "restaurantId": "test-restaurant-b",
+      "expected": "Allowed features match the Growth test plan."
+    },
+    {
+      "name": "past-due",
+      "restaurantId": "test-restaurant-c",
+      "expected": "Apply documented past-due/grace policy; billing remains accessible."
+    },
+    {
+      "name": "expired-trial",
+      "expected": "Expiry is idempotent; tenant data is preserved and billing remains accessible."
+    },
+    {
+      "name": "no-subscription",
+      "restaurantId": "test-restaurant-no-subscription",
+      "expected": "Apply explicit backward-compatible default policy; do not accidentally lock out existing tenants."
+    },
+    {
+      "name": "tenant-isolation",
+      "expected": "Restaurant A cannot read or change Restaurant B subscription/invoice records, and vice versa."
+    },
+    {
+      "name": "plan-limit",
+      "expected": "Owner cannot bypass staff/menu/location limits through direct API calls."
+    },
+    {
+      "name": "duplicate-webhook",
+      "eventId": "test-event-duplicate-003",
+      "expected": "Same event is applied only once."
+    },
+    {
+      "name": "payment-not-confirmed",
+      "expected": "Browser success redirect without verified provider event must not mark an invoice paid."
+    },
+    {
+      "name": "archived-plan",
+      "planId": "test-plan-archived",
+      "expected": "History is preserved; new subscriptions cannot use archived plans unless an explicit safe rule allows it."
+    }
+  ]
+}

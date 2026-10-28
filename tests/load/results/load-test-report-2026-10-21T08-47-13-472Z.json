@@ -1,0 +1,253 @@
+[
+  {
+    "stageName": "Stage 0: Baseline Smoke Test",
+    "vus": 1,
+    "durationSeconds": 30.2,
+    "totalRequests": 27,
+    "throughput": 0.89,
+    "successRate": 100,
+    "totalErrors": 0,
+    "sqliteBusyCount": 0,
+    "aborted": false,
+    "abortReason": "",
+    "overallLatency": {
+      "min": 378.35,
+      "p50": 559.53,
+      "p90": 1281.1,
+      "p95": 2308.55,
+      "p99": 3847.74,
+      "max": 3847.74,
+      "mean": 867.18
+    },
+    "routeBreakdown": {
+      "GET /api/health": {
+        "total": 9,
+        "successRate": 100,
+        "latency": {
+          "min": 449.51,
+          "p50": 525.19,
+          "p90": 641.91,
+          "p95": 641.91,
+          "p99": 641.91,
+          "max": 641.91,
+          "mean": 536.44
+        }
+      },
+      "GET /api/ready": {
+        "total": 9,
+        "successRate": 100,
+        "latency": {
+          "min": 378.35,
+          "p50": 532.66,
+          "p90": 648.28,
+          "p95": 648.28,
+          "p99": 648.28,
+          "max": 648.28,
+          "mean": 522.42
+        }
+      },
+      "GET /q/[token]": {
+        "total": 9,
+        "successRate": 100,
+        "latency": {
+          "min": 1024.49,
+          "p50": 1102.99,
+          "p90": 3847.74,
+          "p95": 3847.74,
+          "p99": 3847.74,
+          "max": 3847.74,
+          "mean": 1542.67
+        }
+      }
+    }
+  },
+  {
+    "stageName": "Stage 1: Light Concurrency",
+    "vus": 5,
+    "durationSeconds": 61.07,
+    "totalRequests": 62,
+    "throughput": 1.02,
+    "successRate": 100,
+    "totalErrors": 0,
+    "sqliteBusyCount": 0,
+    "aborted": false,
+    "abortReason": "",
+    "overallLatency": {
+      "min": 1149.35,
+      "p50": 3926.79,
+      "p90": 5375.71,
+      "p95": 6145.94,
+      "p99": 6500.82,
+      "max": 6500.82,
+      "mean": 3866.23
+    },
+    "routeBreakdown": {
+      "GET /api/v1/orders/track": {
+        "total": 11,
+        "successRate": 100,
+        "latency": {
+          "min": 1149.35,
+          "p50": 2415.23,
+          "p90": 2972.88,
+          "p95": 3248.34,
+          "p99": 3248.34,
+          "max": 3248.34,
+          "mean": 2399.27
+        }
+      },
+      "POST /api/v1/orders": {
+        "total": 6,
+        "successRate": 100,
+        "latency": {
+          "min": 1832.07,
+          "p50": 3137.03,
+          "p90": 3926.79,
+          "p95": 3926.79,
+          "p99": 3926.79,
+          "max": 3926.79,
+          "mean": 3056.31
+        }
+      },
+      "POST /api/v1/tables/call-waiter": {
+        "total": 10,
+        "successRate": 100,
+        "latency": {
+          "min": 1745.99,
+          "p50": 2484.7,
+          "p90": 3808.36,
+          "p95": 3808.36,
+          "p99": 3808.36,
+          "max": 3808.36,
+          "mean": 2694.65
+        }
+      },
+      "GET /q/[token]": {
+        "total": 32,
+        "successRate": 100,
+        "latency": {
+          "min": 3762.8,
+          "p50": 4854.12,
+          "p90": 6145.94,
+          "p95": 6434.04,
+          "p99": 6500.82,
+          "max": 6500.82,
+          "mean": 4925.03
+        }
+      },
+      "GET /api/v1/orders/admin": {
+        "total": 3,
+        "successRate": 100,
+        "latency": {
+          "min": 3098.17,
+          "p50": 3560.61,
+          "p90": 3770.1,
+          "p95": 3770.1,
+          "p99": 3770.1,
+          "max": 3770.1,
+          "mean": 3476.29
+        }
+      }
+    }
+  },
+  {
+    "stageName": "Stage 2: Realistic Peak Concurrency",
+    "vus": 10,
+    "durationSeconds": 71.8,
+    "totalRequests": 65,
+    "throughput": 0.91,
+    "successRate": 100,
+    "totalErrors": 0,
+    "sqliteBusyCount": 0,
+    "aborted": false,
+    "abortReason": "",
+    "overallLatency": {
+      "min": 1575.88,
+      "p50": 7806.53,
+      "p90": 14198.42,
+      "p95": 15415.64,
+      "p99": 24840.23,
+      "max": 24840.23,
+      "mean": 8387.14
+    },
+    "routeBreakdown": {
+      "GET /api/v1/orders/admin": {
+        "total": 4,
+        "successRate": 100,
+        "latency": {
+          "min": 1575.88,
+          "p50": 6254.63,
+          "p90": 6311.49,
+          "p95": 6311.49,
+          "p99": 6311.49,
+          "max": 6311.49,
+          "mean": 4479.4
+        }
+      },
+      "GET /api/v1/orders/track": {
+        "total": 20,
+        "successRate": 100,
+        "latency": {
+          "min": 2046.89,
+          "p50": 6612.2,
+          "p90": 13444.81,
+          "p95": 14158.35,
+          "p99": 14158.35,
+          "max": 14158.35,
+          "mean": 7068.13
+        }
+      },
+      "POST /api/v1/tables/call-waiter": {
+        "total": 5,
+        "successRate": 100,
+        "latency": {
+          "min": 2143.71,
+          "p50": 2151.25,
+          "p90": 15415.64,
+          "p95": 15415.64,
+          "p99": 15415.64,
+          "max": 15415.64,
+          "mean": 5606.8
+        }
+      },
+      "POST /api/v1/orders": {
+        "total": 3,
+        "successRate": 100,
+        "latency": {
+          "min": 3510.26,
+          "p50": 5249.1,
+          "p90": 6787.15,
+          "p95": 6787.15,
+          "p99": 6787.15,
+          "max": 6787.15,
+          "mean": 5182.17
+        }
+      },
+      "GET /api/health": {
+        "total": 3,
+        "successRate": 100,
+        "latency": {
+          "min": 1988.77,
+          "p50": 5559.84,
+          "p90": 15091.09,
+          "p95": 15091.09,
+          "p99": 15091.09,
+          "max": 15091.09,
+          "mean": 7546.57
+        }
+      },
+      "GET /q/[token]": {
+        "total": 30,
+        "successRate": 100,
+        "latency": {
+          "min": 5797.05,
+          "p50": 9681.82,
+          "p90": 15707.5,
+          "p95": 23059.47,
+          "p99": 24840.23,
+          "max": 24840.23,
+          "mean": 10655.45
+        }
+      }
+    }
+  }
+]

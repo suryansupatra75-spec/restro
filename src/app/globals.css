@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/*
+ * Design Tokens — Restaurant SaaS
+ * All components must reference these tokens.
+ * See design.md for specification.
+ */
+
+@theme {
+  /* ─── Brand Colors ─── */
+  --color-primary: #E85D2A;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #1B4332;
+  --color-secondary-foreground: #FFFFFF;
+
+  /* ─── Neutral Palette ─── */
+  --color-background: #FAFAF9;
+  --color-foreground: #1C1917;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F5F5F4;
+  --color-border: #E7E5E4;
+  --color-muted-foreground: #78716C;
+
+  /* ─── Status Colors ─── */
+  --color-success: #16A34A;
+  --color-warning: #F59E0B;
+  --color-danger: #DC2626;
+
+  /* ─── Radius Scale ─── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ─── Spacing Scale (reference via Tailwind utilities) ─── */
+  /* 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 — uses Tailwind defaults */
+
+  /* ─── Typography ─── */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Base Styles ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+}
+
+/* ─── Focus Styles ─── */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary rounded-sm;
+}
+
+/* ─── Typography Utilities ─── */
+.text-display {
+  @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+}
+
+.text-h1 {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight;
+}
+
+.text-h2 {
+  @apply text-2xl sm:text-3xl font-semibold leading-snug;
+}
+
+.text-h3 {
+  @apply text-xl sm:text-2xl font-semibold leading-snug;
+}
+
+.text-body {
+  @apply text-base leading-relaxed;
+}
+
+.text-body-sm {
+  @apply text-sm leading-relaxed;
+}
+
+.text-caption {
+  @apply text-xs leading-normal text-muted-foreground;
+}
+
+/* ─── Utility: Hide Scrollbar ─── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Thermal Receipt & KOT Print Styles ─── */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #printable-receipt,
+  #printable-receipt * {
+    visibility: visible !important;
+  }
+  #printable-receipt {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 80mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}

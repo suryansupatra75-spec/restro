@@ -1,0 +1,64 @@
+[
+  {
+    "stageName": "Stage 0: Baseline Smoke Test",
+    "vus": 1,
+    "durationSeconds": 30.3,
+    "totalRequests": 18,
+    "throughput": 0.59,
+    "successRate": 100,
+    "totalErrors": 0,
+    "sqliteBusyCount": 0,
+    "aborted": false,
+    "abortReason": "",
+    "overallLatency": {
+      "min": 466.67,
+      "p50": 604.61,
+      "p90": 3435.99,
+      "p95": 5209.56,
+      "p99": 5209.56,
+      "max": 5209.56,
+      "mean": 1335.47
+    },
+    "routeBreakdown": {
+      "GET /api/health": {
+        "total": 6,
+        "successRate": 100,
+        "latency": {
+          "min": 484.85,
+          "p50": 580.42,
+          "p90": 2642.02,
+          "p95": 2642.02,
+          "p99": 2642.02,
+          "max": 2642.02,
+          "mean": 903.9
+        }
+      },
+      "GET /api/ready": {
+        "total": 6,
+        "successRate": 100,
+        "latency": {
+          "min": 466.67,
+          "p50": 580.39,
+          "p90": 974.97,
+          "p95": 974.97,
+          "p99": 974.97,
+          "max": 974.97,
+          "mean": 611.72
+        }
+      },
+      "GET /q/[token]": {
+        "total": 6,
+        "successRate": 100,
+        "latency": {
+          "min": 1054.3,
+          "p50": 2452.96,
+          "p90": 5209.56,
+          "p95": 5209.56,
+          "p99": 5209.56,
+          "max": 5209.56,
+          "mean": 2490.79
+        }
+      }
+    }
+  }
+]

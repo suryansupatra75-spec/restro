@@ -1,0 +1,50 @@
+# ==============================================================================
+# RESTAURANT SAAS — DOCKER BUILD CONTEXT EXCLUSIONS (.dockerignore)
+# ==============================================================================
+# Prevent leaking secrets, local build artifacts, dev databases, and logs into Docker images
+
+# Version Control
+.git
+.gitignore
+
+# Environment & Secrets (NEVER bake credentials into container images)
+.env
+.env.*
+!.env.example
+
+# Local Dependencies & Builds
+node_modules
+.next
+out
+build
+coverage
+
+# Database files & backups (Use mounted volumes or cloud database instead)
+prisma/*.db
+prisma/*.db-wal
+prisma/*.db-shm
+prisma/*.sqlite*
+backups/
+
+# Logs & Temporary Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+tmp/
+
+# Documentation & Tests
+docs/
+fixtures/
+.agents/
+.cursor/
+.claude/
+.devin/
+*.md
+!README.md
+
+# OS / Editor Files
+.DS_Store
+Thumbs.db
+*.pem
+*.tsbuildinfo
